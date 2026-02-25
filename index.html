@@ -1,23 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Gestión de Productos</title>
+  <meta charset="UTF-8">
+  <title>CRUD Productos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 70%;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
-    <h1>Listado de Productos</h1>
+  <h1>Gestión de Productos</h1>
+  
+  <!-- Formulario para agregar productos -->
+  <form id="productForm">
+    <input type="text" id="name" placeholder="Nombre del producto" required>
+    <input type="number" id="price" placeholder="Precio" required>
+    <button type="submit">Agregar Producto</button>
+  </form>
 
-    <div id="formulario">
-        <input type="text" id="nombre" placeholder="Nombre del producto">
-        <input type="number" id="precio" placeholder="Precio">
-        <button onclick="agregarProducto()">Agregar</button>
-    </div>
+  <!-- Tabla dinámica de productos -->
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody id="productList">
+      <!-- Aquí se insertan los productos dinámicamente -->
+    </tbody>
+  </table>
 
-    <ul id="listaProductos">
-        <li>Producto 1 - $10</li>
-        <li>Producto 2 - $25</li>
-        <li>Producto 3 - $40</li>
-    </ul>
-
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
