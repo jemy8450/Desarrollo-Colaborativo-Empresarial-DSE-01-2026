@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Gestión de Productos</title>
+  <meta charset="UTF-8">
+  <title>CRUD Productos</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Listado de Productos</h1>
+  <h1>Gestión de Productos</h1>
+  
+  <!-- Formulario -->
+  <form id="productForm">
+    <input type="text" id="name" placeholder="Nombre del producto" required>
+    <input type="number" id="price" placeholder="Precio" required>
+    <button type="submit">Guardar Producto</button>
+  </form>
 
-    <div id="formulario">
-        <input type="text" id="nombre" placeholder="Nombre del producto">
-        <input type="number" id="precio" placeholder="Precio">
-        <button onclick="agregarProducto()">Agregar</button>
-    </div>
+  <!-- Tabla -->
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="productList"></tbody>
+  </table>
 
-    <ul id="listaProductos">
-        <li>Producto 1 - $10</li>
-        <li>Producto 2 - $25</li>
-        <li>Producto 3 - $40</li>
-    </ul>
-
-    <script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
