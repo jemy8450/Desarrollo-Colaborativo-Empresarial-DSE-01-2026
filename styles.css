@@ -1,63 +1,156 @@
+/* Fondo general */
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f4f9;
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #212529;
 }
 
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-form {
+/* Títulos */
+h2 {
   margin-bottom: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+/* Formularios */
+input.form-control, select.form-select, textarea.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+}
+
+input.form-control:focus, select.form-select:focus, textarea.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.25);
+}
+
+/* Textarea sin redimensionar */
+textarea {
+  resize: none;
+}
+
+/* Tabla */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.table thead th {
+  background-color: #343a40;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td, .table th {
+  vertical-align: middle;
   text-align: center;
+  padding: 12px;
 }
 
-input {
-  padding: 8px;
-  margin: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Justificar y delimitar área de descripción */
+.table td:nth-child(7) {
+  text-align: justify;
+  max-width: 350px;
+  white-space: normal;
+  word-wrap: break-word;
+  padding: 15px;
+  background-color: #fdfdfd;
+  border-left: 2px solid #dee2e6;
 }
 
-button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
+/* Hover en filas */
+.table tbody tr:hover {
+  background-color: #f1f9ff;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
-button:hover {
-  opacity: 0.9;
+/* Estados dinámicos */
+.text-success {
+  font-weight: bold;
+  color: #28a745;
 }
 
-table {
-  margin: 0 auto;
-  border-collapse: collapse;
-  width: 70%;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.text-danger {
+  font-weight: bold;
+  color: #dc3545;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
+/* Botones en vertical dentro de la celda de acciones */
+.table td.acciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* espacio entre botones */
 }
 
-th {
-  background-color: #4CAF50;
-  color: white;
+/* Botones generales */
+.btn {
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  width: 120px; /* ancho uniforme */
 }
 
-tr:nth-child(even) {
-  background-color: #f9f9f9;
+/* Botón Guardar */
+.btn-success {
+  background-color: #28a745;
+  border: none;
 }
 
-.edit-btn {
-  background-color: #2196F3;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Botón Editar */
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Botón Eliminar */
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Botón Cancelar */
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .table {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  input.form-control, select.form-select, textarea.form-control {
+    font-size: 14px;
+  }
+
+  .table td:nth-child(7) {
+    max-width: 200px;
+  }
 }
