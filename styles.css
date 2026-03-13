@@ -1,156 +1,187 @@
-/* Fondo general */
+/* Fondo general y tipografía */
 body {
-  background-color: #f8f9fa;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #212529;
+  background-color: #f4f7f6;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #2b3440;
+}
+
+/* Tarjetas base */
+.custom-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
 }
 
 /* Títulos */
-h2 {
-  margin-bottom: 20px;
+.section-title {
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #1a202c;
+  font-size: 1.75rem;
+  letter-spacing: -0.5px;
+}
+
+/* TABS Modernos */
+.nav-tabs { gap: 15px; }
+.nav-tabs .nav-link {
+  border: none !important;
+  color: #718096;
   font-weight: 600;
-  color: #2c3e50;
-  border-bottom: 2px solid #dee2e6;
-  padding-bottom: 8px;
+  border-radius: 30px;
+  padding: 12px 28px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+.nav-tabs .nav-link:hover {
+  color: #2d3748;
+  background-color: #e2e8f0;
+}
+.nav-tabs .nav-link.active {
+  background-color: #3182ce !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(49, 130, 206, 0.4);
 }
 
-/* Formularios */
-input.form-control, select.form-select, textarea.form-control {
-  border-radius: 8px;
-  border: 1px solid #ced4da;
-  transition: all 0.2s ease-in-out;
-}
-
-input.form-control:focus, select.form-select:focus, textarea.form-control:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 6px rgba(13, 110, 253, 0.25);
-}
-
-/* Textarea sin redimensionar */
-textarea {
-  resize: none;
-}
-
-/* Tabla */
-.table {
+/* Formularios modernos */
+.form-control, .form-select {
   border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1.5px solid #e2e8f0;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  background-color: #f8fafc;
+  color: #2d3748;
+  transition: all 0.3s ease;
 }
+.form-control::placeholder { color: #a0aec0; }
+.form-control:focus, .form-select:focus {
+  background-color: #ffffff;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.15);
+  outline: none;
+}
+textarea.form-control { resize: none; }
 
+/* Tabla minimalista */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+}
 .table thead th {
-  background-color: #343a40;
-  color: #fff;
-  font-weight: 600;
+  background-color: #f8fafc;
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid #edf2f7;
+  padding: 16px;
+  border-top: none;
+  text-align: center;
 }
+.table thead th:first-child { border-top-left-radius: 10px; }
+.table thead th:last-child { border-top-right-radius: 10px; }
 
-.table td, .table th {
+.table tbody td {
+  background-color: #ffffff;
+  padding: 18px 16px;
+  border-bottom: 1px solid #edf2f7;
+  color: #4a5568;
   vertical-align: middle;
   text-align: center;
-  padding: 12px;
 }
-
-/* Justificar y delimitar área de descripción */
-.table td:nth-child(7) {
-  text-align: justify;
-  max-width: 350px;
-  white-space: normal;
-  word-wrap: break-word;
-  padding: 15px;
-  background-color: #fdfdfd;
-  border-left: 2px solid #dee2e6;
-}
-
-/* Hover en filas */
-.table tbody tr:hover {
-  background-color: #f1f9ff;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+.table tbody tr { transition: all 0.2s ease; }
+.table tbody tr:hover td {
+  background-color: #fbfbfc;
+  cursor: default;
 }
 
 /* Estados dinámicos */
 .text-success {
+  color: #38a169 !important;
+  background-color: #f0fff4;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
   font-weight: bold;
-  color: #28a745;
 }
-
 .text-danger {
+  color: #e53e3e !important;
+  background-color: #fff5f5;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
   font-weight: bold;
-  color: #dc3545;
 }
 
-/* Botones en vertical dentro de la celda de acciones */
+/* Celda de acciones */
 .table td.acciones {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   align-items: center;
-  gap: 12px; /* espacio entre botones */
 }
 
-/* Botones generales */
+/* Botones Premium */
 .btn {
-  border-radius: 6px;
-  transition: all 0.2s ease-in-out;
-  width: 120px; /* ancho uniforme */
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  width: 110px;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-success { background-color: #38a169; border: none; box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3); }
+.btn-success:hover { background-color: #2f855a; box-shadow: 0 6px 16px rgba(56, 161, 105, 0.4); }
+.btn-primary { background-color: #3182ce; border: none; }
+.btn-primary:hover { background-color: #2b6cb0; }
+.btn-danger { background-color: #e53e3e; border: none; }
+.btn-danger:hover { background-color: #c53030; }
+
+/* Botón Guardar principal más ancho */
+.btn-lg.px-5 { width: auto; }
+
+/* Botones para la descripción */
+.btn-desc {
+  background-color: #edf2f7;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+  width: auto;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+.btn-desc:hover {
+  background-color: #e2e8f0;
+  color: #2d3748;
 }
 
-/* Botón Guardar */
-.btn-success {
-  background-color: #28a745;
-  border: none;
-}
-
-.btn-success:hover {
-  background-color: #218838;
-}
-
-/* Botón Editar */
-.btn-primary {
-  background-color: #0d6efd;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #0b5ed7;
-}
-
-/* Botón Eliminar */
-.btn-danger {
-  background-color: #dc3545;
-  border: none;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-}
-
-/* Botón Cancelar */
-.btn-secondary {
-  background-color: #6c757d;
-  border: none;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-/* Responsividad */
+/* Responsividad mejorada */
 @media (max-width: 768px) {
-  .table {
-    font-size: 14px;
-  }
+  .custom-card { padding: 20px; }
+  .table td.acciones { flex-direction: row; justify-content: center; }
+  .btn { width: auto; font-size: 0.85rem; padding: 6px 12px; }
+}
+/* --- AJUSTES PARA LOS CAMPOS EN MODO EDICIÓN DENTRO DE LA TABLA --- */
 
-  h2 {
-    font-size: 20px;
-  }
+/* 1. Hacemos los inputs más compactos solo dentro de la tabla */
+.table td .form-control, 
+.table td .form-select {
+  padding: 8px 12px; /* Menos relleno para que no abulten tanto la fila */
+  font-size: 0.9rem;
+}
 
-  input.form-control, select.form-select, textarea.form-control {
-    font-size: 14px;
-  }
+/* 2. Asignamos anchos mínimos para que el texto nunca se corte */
+.table td input[id^="edit-nombre"] {
+  min-width: 250px; /* Mucho espacio para nombres largos */
+}
 
-  .table td:nth-child(7) {
-    max-width: 200px;
-  }
+.table td input[id^="edit-precio"],
+.table td input[id^="edit-stock"] {
+  min-width: 120px; /* Espacio suficiente para los números y las comas */
+}
+
+.table td select[id^="edit-categoria"] {
+  min-width: 140px; /* Garantiza que la palabra "Electrónica" encaje perfecto */
 }
