@@ -1,35 +1,30 @@
 ### Desarrollo-Colaborativo-Empresarial-DSE-01-2026
-### Sprint 3 – Semana 7
+
+### Sprint 4 – Semana 8
 
 ### Qué se hizo
-Se agrego lo solicitado en comentarios de la entrega de moodle del sprint 1 del cual no nos habiamos percatado pero ahora ya esta implementado tanto para el apartado de crear productos y lista de productos.
-
-Se implementó la funcionalidad DELETE para eliminar productos de la lista.
-
-Se añadió un botón Eliminar en cada fila de la tabla.
-
-Al hacer clic en Eliminar, se muestra una confirmación con SweetAlert2 para evitar borrados accidentales.
-
-Si el usuario confirma, el producto se elimina del array, se actualiza el localStorage y la lista se re-renderiza.
-
-Se mantuvo la coherencia visual en la tabla y botones, con estilos consistentes en el archivo CSS separado.
+- Se implementó un sistema de búsqueda y filtrado dinámico en la lista de productos, cumpliendo con los objetivos principales del sprint.
+- Se añadió un campo de búsqueda por nombre de producto en tiempo real.
+- Se agregó un filtro adicional por Categoría mediante un menú desplegable (select).
+- El renderizado de la tabla ahora es completamente dinámico: los productos se filtran visualmente al instante mientras el usuario escribe o selecciona opciones, sin necesidad de recargar la página.
+- Se realizó una mejora visual masiva (Refactorización UI/UX), pasando a un diseño "Soft UI" minimalista, limpio y profesional.
+- Se optimizó la tabla de productos: las descripciones largas ahora se visualizan y editan a través de ventanas modales interactivas (SweetAlert2) para no romper la estética de la interfaz.
 
 ### Quién hizo qué
-Wendy Marisol y Ronald Alexander: trabajaron en la estructura HTML y CSS, asegurando que el botón Eliminar se integrara correctamente en la tabla y mantuviera la estética responsiva.
+Wendy Marisol y Ronald Alexander: Trabajaron en la reestructuración del HTML y en el nuevo archivo CSS, implementando el diseño de "tarjetas" (Soft UI), mejorando la responsividad y asegurando que los campos de edición se adaptaran correctamente dentro de la tabla sin deformarla.
 
-Carlos Ernesto: desarrolló la lógica en JavaScript para la función eliminarProducto(), incluyendo la confirmación con SweetAlert2 y la actualización del localStorage.
+Carlos Ernesto: Desarrolló la lógica en JavaScript para implementar el renderizado dinámico (renderProductos()) utilizando los métodos .filter() y .toLowerCase(). Además, refactorizó las funciones de editar y eliminar para solucionar un bug crítico de asignación.
 
-Jeremy Eduardo: coordinó como Scrum Master, revisó Pull Requests y centralizó la integración en el repositorio.
+Jeremy Eduardo: Coordinó como Scrum Master, integró la lógica de los modales de SweetAlert2 para visualizar/editar la descripción de los productos de forma cómoda, revisó los Pull Requests y centralizó la integración del proyecto.
 
-Nestor Eduardo: apoyó en documentación, pruebas de la funcionalidad DELETE y organización del flujo de trabajo.
+Nestor Eduardo: Apoyó en la documentación del sprint, realizó pruebas de estrés (QA) combinando los filtros de búsqueda con las funciones de eliminar/editar para asegurar que no hubieran fallos de estado, y verificó el correcto formateo de los números (precios y stock).
 
-### Problemas encontrados
-Inicialmente, al eliminar un producto, la lista no se actualizaba correctamente. Se solucionó re-renderizando la tabla después de modificar el array.
+#### Problemas encontrados
 
-Hubo confusión en el manejo de índices al eliminar productos, lo que provocaba errores en la posición de los elementos. Se corrigió asegurando que el splice() se aplicara al índice correcto.
+1. El "Bug" de los índices al filtrar: Inicialmente, al buscar un producto en la barra de búsqueda y darle clic en "Eliminar" o "Editar", el sistema modificaba un producto distinto al seleccionado. Esto ocurrió porque la posición visual en la tabla filtrada ya no coincidía con el índice real del arreglo. Se solucionó cambiando la lógica para buscar por un identificador único (producto.id) en lugar de usar el index.
 
-Se presentaron dudas sobre la confirmación de eliminación, ya que algunos usuarios podían cancelar la acción. Se resolvió implementando un flujo claro con SweetAlert2 que distingue entre confirmación y cancelación.
+2. Ruptura del diseño en la tabla: Durante la edición en línea, los campos de texto (inputs) heredaban el tamaño del formulario principal, lo que causaba que textos como el nombre o la categoría se cortaran o aplastaran la fila. Se resolvió aplicando reglas CSS específicas de min-width y reduciendo el padding exclusivo para los inputs dentro de la tabla.
 
-Se verificó que el estado de los productos (Activo/Inactivo) se mantuviera coherente después de eliminar elementos.
+3. Saturación visual por textos largos: Las descripciones detalladas de los productos hacían que las filas de la tabla fueran excesivamente grandes y antiestéticas. Se resolvió ocultando el texto directo e implementando botones tipo "píldora" que despliegan la información mediante ventanas modales (SweetAlert2).
 
-Hubieron problemas con las computadoras de los demas integrates de nuevo como problemas tecnicos, etc por lo cual como equipo para este tercer Sprint se realizaron varias llaadas de meet en las cuales colaboramos todos y lo realizamos en la computadora de Jeremy Segura a quien se le compartieron los codigos hechos por los demas integrantes y el se encargo de subirlo al repositorio.
+4. Dinámica de trabajo (Problemas técnicos): Persistieron los inconvenientes técnicos con las computadoras y conexiones de algunos integrantes del equipo para asegurar la entrega y el aprendizaje mutuo mantuvimos la misma estrategia del Sprint 3 donde se realizaron sesiones de trabajo colaborativo mediante llamadas de Meet todos aportamos al código en conjunto desde la computadora de Jeremy Segura quien a quien se le compartieron los codigos hechos por los demas integrantes y el se encargo de subirlo al repositorio. 
