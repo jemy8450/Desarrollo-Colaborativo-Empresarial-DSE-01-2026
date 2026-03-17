@@ -2,19 +2,25 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>CRUD Productos con Stock</title>
+  <title>CRUD Productos Premium</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container mt-5">
+    
     <ul class="nav nav-tabs border-0 mb-4 justify-content-center" id="menuTabs" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="crear-tab" data-bs-toggle="tab" data-bs-target="#crear" type="button" role="tab">Crear Producto</button>
+        <button class="nav-link active" id="crear-tab" data-bs-toggle="tab" data-bs-target="#crear" type="button" role="tab">
+          <i class="bi bi-plus-circle me-2"></i>Crear Producto
+        </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="lista-tab" data-bs-toggle="tab" data-bs-target="#lista" type="button" role="tab">Lista de Productos</button>
+        <button class="nav-link" id="lista-tab" data-bs-toggle="tab" data-bs-target="#lista" type="button" role="tab">
+          <i class="bi bi-box-seam me-2"></i>Lista de Productos
+        </button>
       </li>
     </ul>
 
@@ -22,36 +28,56 @@
       
       <div class="tab-pane fade show active" id="crear" role="tabpanel">
         <div class="custom-card">
-          <h2 class="section-title">Añadir Nuevo Producto</h2>
+          <h2 class="section-title"><i class="bi bi-tag text-primary me-2"></i>Añadir Nuevo Producto</h2>
           <form id="productForm" class="row g-4">
             <input type="hidden" id="productId">
+            
             <div class="col-md-6">
               <label class="form-label text-muted small fw-bold">Nombre del producto</label>
-              <input type="text" id="name" class="form-control" placeholder="Ej. Zapatillas Nike" required>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-box"></i></span>
+                <input type="text" id="name" class="form-control border-start-0 ps-0" placeholder="Ej. Zapatillas Nike" required>
+              </div>
             </div>
+            
             <div class="col-md-6">
               <label class="form-label text-muted small fw-bold">Precio (USD)</label>
-              <input type="text" id="price" class="form-control" placeholder="0.00" inputmode="decimal" required>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-currency-dollar"></i></span>
+                <input type="text" id="price" class="form-control border-start-0 ps-0" placeholder="0.00" inputmode="decimal" required>
+              </div>
             </div>
+            
             <div class="col-md-6">
               <label class="form-label text-muted small fw-bold">Unidades en Stock</label>
-              <input type="text" id="stock" class="form-control" placeholder="0" inputmode="numeric" required>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-123"></i></span>
+                <input type="text" id="stock" class="form-control border-start-0 ps-0" placeholder="0" inputmode="numeric" required>
+              </div>
             </div>
+            
             <div class="col-md-6">
               <label class="form-label text-muted small fw-bold">Categoría</label>
-              <select id="categoria" class="form-select" required>
-                <option value="">Seleccione una opción</option>
-                <option value="Electrónica">Electrónica</option>
-                <option value="Ropa">Ropa</option>
-                <option value="Hogar">Hogar</option>
-              </select>
+              <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-collection"></i></span>
+                <select id="categoria" class="form-select border-start-0 ps-0" required>
+                  <option value="">Seleccione una opción</option>
+                  <option value="Electrónica">Electrónica</option>
+                  <option value="Ropa">Ropa</option>
+                  <option value="Hogar">Hogar</option>
+                </select>
+              </div>
             </div>
+            
             <div class="col-12">
               <label class="form-label text-muted small fw-bold">Descripción detallada</label>
-              <textarea id="descripcion" class="form-control" rows="3" placeholder="Escribe los detalles del producto aquí..." required></textarea>
+              <textarea id="descripcion" class="form-control p-3" rows="3" placeholder="Escribe los detalles del producto aquí..." required></textarea>
             </div>
+            
             <div class="col-12 text-end mt-4">
-              <button type="submit" class="btn btn-success btn-lg px-5">Guardar Producto</button>
+              <button type="submit" class="btn btn-success btn-lg px-5">
+                <i class="bi bi-check2-circle me-2"></i>Guardar Producto
+              </button>
             </div>
           </form>
         </div>
@@ -59,11 +85,14 @@
 
       <div class="tab-pane fade" id="lista" role="tabpanel">
         <div class="custom-card">
-          <h2 class="section-title">Inventario Actual</h2>
+          <h2 class="section-title"><i class="bi bi-journal-text text-primary me-2"></i>Inventario Actual</h2>
 
           <div class="row mb-4 g-3">
             <div class="col-md-8">
-              <input type="text" id="searchInput" class="form-control" placeholder="🔍 Buscar por nombre de producto...">
+              <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="bi bi-search"></i></span>
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar por nombre de producto...">
+              </div>
             </div>
             <div class="col-md-4">
               <select id="filterCategoria" class="form-select">
