@@ -1,25 +1,26 @@
 /* Fondo general y tipografía */
 body {
-  background-color: #f4f7f6;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f8faff; /* Un tono más frío y moderno */
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   color: #2b3440;
 }
 
 /* Tarjetas base */
 .custom-card {
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
+  border: 1px solid rgba(0,0,0,0.03);
 }
 
 /* Títulos */
 .section-title {
   margin-bottom: 30px;
-  font-weight: 700;
+  font-weight: 800;
   color: #1a202c;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   letter-spacing: -0.5px;
 }
 
@@ -27,161 +28,141 @@ body {
 .nav-tabs { gap: 15px; }
 .nav-tabs .nav-link {
   border: none !important;
-  color: #718096;
+  color: #64748b;
   font-weight: 600;
-  border-radius: 30px;
-  padding: 12px 28px;
-  background-color: transparent;
+  border-radius: 12px;
+  padding: 12px 24px;
+  background-color: #f1f5f9;
   transition: all 0.3s ease;
 }
 .nav-tabs .nav-link:hover {
-  color: #2d3748;
+  color: #0f172a;
   background-color: #e2e8f0;
 }
 .nav-tabs .nav-link.active {
-  background-color: #3182ce !important;
+  background-color: #2563eb !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(49, 130, 206, 0.4);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
 
-/* Formularios modernos */
-.form-control, .form-select {
+/* Formularios modernos e Input Groups */
+.form-control, .form-select, .input-group-text {
   border-radius: 10px;
   border: 1.5px solid #e2e8f0;
-  padding: 14px 18px;
+  padding: 12px 16px;
   font-size: 0.95rem;
   background-color: #f8fafc;
-  color: #2d3748;
-  transition: all 0.3s ease;
+  color: #1e293b;
+  transition: all 0.2s ease;
 }
-.form-control::placeholder { color: #a0aec0; }
+.input-group-text {
+  color: #64748b;
+  padding-right: 8px;
+}
+.form-control::placeholder { color: #94a3b8; }
 .form-control:focus, .form-select:focus {
   background-color: #ffffff;
-  border-color: #3182ce;
-  box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.15);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
   outline: none;
 }
-textarea.form-control { resize: none; }
+textarea.form-control { resize: none; border-radius: 12px; }
 
 /* Tabla minimalista */
 .table {
   border-collapse: separate;
   border-spacing: 0;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .table thead th {
   background-color: #f8fafc;
-  color: #718096;
-  font-size: 0.85rem;
+  color: #64748b;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  border-bottom: 2px solid #edf2f7;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #e2e8f0;
   padding: 16px;
   border-top: none;
   text-align: center;
 }
-.table thead th:first-child { border-top-left-radius: 10px; }
-.table thead th:last-child { border-top-right-radius: 10px; }
+.table thead th:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+.table thead th:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px;}
 
 .table tbody td {
   background-color: #ffffff;
-  padding: 18px 16px;
-  border-bottom: 1px solid #edf2f7;
-  color: #4a5568;
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
   vertical-align: middle;
   text-align: center;
 }
 .table tbody tr { transition: all 0.2s ease; }
-.table tbody tr:hover td {
-  background-color: #fbfbfc;
-  cursor: default;
-}
+.table tbody tr:hover td { background-color: #f8fafc; cursor: default; }
 
-/* Estados dinámicos */
-.text-success {
-  color: #38a169 !important;
-  background-color: #f0fff4;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-.text-danger {
-  color: #e53e3e !important;
-  background-color: #fff5f5;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-/* Celda de acciones */
+/* Celda de acciones (Alineadas en horizontal) */
 .table td.acciones {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
 }
 
-/* Botones Premium */
+/* Botones Premium y de Iconos */
 .btn {
   font-weight: 600;
   letter-spacing: 0.3px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  width: 110px;
+  border-radius: 10px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn:hover { transform: translateY(-2px); }
-.btn-success { background-color: #38a169; border: none; box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3); }
-.btn-success:hover { background-color: #2f855a; box-shadow: 0 6px 16px rgba(56, 161, 105, 0.4); }
-.btn-primary { background-color: #3182ce; border: none; }
-.btn-primary:hover { background-color: #2b6cb0; }
-.btn-danger { background-color: #e53e3e; border: none; }
-.btn-danger:hover { background-color: #c53030; }
 
-/* Botón Guardar principal más ancho */
-.btn-lg.px-5 { width: auto; }
+/* Botones circulares para la tabla */
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.btn-success { background-color: #10b981; border: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
+.btn-success:hover { background-color: #059669; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3); }
+
+.btn-primary { background-color: #3b82f6; border: none; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);}
+.btn-primary:hover { background-color: #2563eb; box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);}
+
+.btn-danger { background-color: #ef4444; border: none; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);}
+.btn-danger:hover { background-color: #dc2626; box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);}
 
 /* Botones para la descripción */
 .btn-desc {
-  background-color: #edf2f7;
-  color: #4a5568;
+  background-color: #f1f5f9;
+  color: #475569;
   border: 1px solid #e2e8f0;
-  width: auto;
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 0.85rem;
 }
 .btn-desc:hover {
   background-color: #e2e8f0;
-  color: #2d3748;
+  color: #0f172a;
 }
+
+/* --- AJUSTES PARA LOS CAMPOS EN MODO EDICIÓN --- */
+.table td .form-control-sm, 
+.table td .form-select-sm {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+.table td input[id^="edit-nombre"] { min-width: 200px; }
+.table td input[id^="edit-precio"],
+.table td input[id^="edit-stock"] { min-width: 100px; }
+.table td select[id^="edit-categoria"] { min-width: 130px; }
 
 /* Responsividad mejorada */
 @media (max-width: 768px) {
   .custom-card { padding: 20px; }
-  .table td.acciones { flex-direction: row; justify-content: center; }
-  .btn { width: auto; font-size: 0.85rem; padding: 6px 12px; }
-}
-/* --- AJUSTES PARA LOS CAMPOS EN MODO EDICIÓN DENTRO DE LA TABLA --- */
-
-/* 1. Hacemos los inputs más compactos solo dentro de la tabla */
-.table td .form-control, 
-.table td .form-select {
-  padding: 8px 12px; /* Menos relleno para que no abulten tanto la fila */
-  font-size: 0.9rem;
-}
-
-/* 2. Asignamos anchos mínimos para que el texto nunca se corte */
-.table td input[id^="edit-nombre"] {
-  min-width: 250px; /* Mucho espacio para nombres largos */
-}
-
-.table td input[id^="edit-precio"],
-.table td input[id^="edit-stock"] {
-  min-width: 120px; /* Espacio suficiente para los números y las comas */
-}
-
-.table td select[id^="edit-categoria"] {
-  min-width: 140px; /* Garantiza que la palabra "Electrónica" encaje perfecto */
 }

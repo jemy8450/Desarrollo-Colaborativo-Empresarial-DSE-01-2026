@@ -26,7 +26,6 @@ function formatStock(value) {
 // -----------------------------
 
 // --- MODALES DE DESCRIPCIÓN ---
-// Ver descripción
 function verDescripcionModal(id) {
   const producto = productos.find(p => p.id === id);
   if (!producto) return;
@@ -40,7 +39,6 @@ function verDescripcionModal(id) {
   });
 }
 
-// Editar descripción
 function editarDescripcionModal(id) {
   const hiddenInput = document.getElementById(`edit-descripcion-${id}`);
   
@@ -49,16 +47,12 @@ function editarDescripcionModal(id) {
     input: 'textarea',
     inputValue: hiddenInput.value,
     inputPlaceholder: 'Escribe los detalles aquí...',
-    inputAttributes: {
-      'aria-label': 'Descripción del producto'
-    },
     showCancelButton: true,
     confirmButtonText: 'Guardar cambios',
     cancelButtonText: 'Cancelar',
     confirmButtonColor: '#3182ce',
   }).then((result) => {
     if (result.isConfirmed) {
-      // Guardamos el texto en el input oculto de la fila
       hiddenInput.value = result.value;
       Swal.fire({
         title: '¡Texto actualizado!',
@@ -89,21 +83,27 @@ function renderProductos() {
       fila.id = `fila-${p.id}`; 
       
       const estado = p.stock > 0 ? "Activo" : "Inactivo";
-      const estadoClass = p.stock > 0 ? "text-success" : "text-danger";
+      const estadoClass = p.stock > 0 ? "text-success bg-success-subtle" : "text-danger bg-danger-subtle";
 
       fila.innerHTML = `
-        <td>${contadorVisual++}</td>
+        <td class="text-muted fw-semibold">${contadorVisual++}</td>
         <td class="fw-bold text-dark">${p.nombre}</td>
-        <td>$${parseFloat(p.precio).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td class="fw-semibold">$${parseFloat(p.precio).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
         <td>${parseInt(p.stock).toLocaleString('en-US')}</td>
-        <td><span class="${estadoClass}">${estado}</span></td>
+        <td><span class="badge rounded-pill ${estadoClass} px-3 py-2">${estado}</span></td>
         <td>${p.categoria}</td>
         <td>
-          <button class="btn btn-desc rounded-pill" onclick="verDescripcionModal(${p.id})">📄 Ver Info</button>
+          <button class="btn btn-desc rounded-pill" onclick="verDescripcionModal(${p.id})">
+            <i class="bi bi-file-earmark-text me-1"></i> Ver Info
+          </button>
         </td>
         <td class="acciones">
-          <button class="btn btn-primary btn-sm" onclick="editarFila(${p.id})">Editar</button>
-          <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${p.id})">Eliminar</button>
+          <button class="btn btn-primary btn-icon rounded-circle" onclick="editarFila(${p.id})" title="Editar">
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+          <button class="btn btn-danger btn-icon rounded-circle" onclick="eliminarProducto(${p.id})" title="Eliminar">
+            <i class="bi bi-trash-fill"></i>
+          </button>
         </td>
       `;
       lista.appendChild(fila);
@@ -118,17 +118,16 @@ function editarFila(id) {
 
   const precioFormat = formatPrice(producto.precio);
   const stockFormat = formatStock(producto.stock);
-  // Escapamos las comillas dobles para que no rompan el input HTML
   const safeDesc = producto.descripcion.replace(/"/g, '&quot;'); 
 
   fila.innerHTML = `
     <td>-</td>
-    <td><input type="text" class="form-control" id="edit-nombre-${id}" value="${producto.nombre}"></td>
-    <td><input type="text" class="form-control" id="edit-precio-${id}" inputmode="decimal" value="${precioFormat}"></td>
-    <td><input type="text" class="form-control" id="edit-stock-${id}" inputmode="numeric" value="${stockFormat}"></td>
-    <td>${producto.stock > 0 ? "Activo" : "Inactivo"}</td>
+    <td><input type="text" class="form-control form-control-sm" id="edit-nombre-${id}" value="${producto.nombre}"></td>
+    <td><input type="text" class="form-control form-control-sm" id="edit-precio-${id}" inputmode="decimal" value="${precioFormat}"></td>
+    <td><input type="text" class="form-control form-control-sm" id="edit-stock-${id}" inputmode="numeric" value="${stockFormat}"></td>
+    <td><span class="badge rounded-pill bg-secondary px-3 py-2">Edición</span></td>
     <td>
-      <select class="form-select" id="edit-categoria-${id}">
+      <select class="form-select form-select-sm" id="edit-categoria-${id}">
         <option value="Electrónica" ${producto.categoria === "Electrónica" ? "selected" : ""}>Electrónica</option>
         <option value="Ropa" ${producto.categoria === "Ropa" ? "selected" : ""}>Ropa</option>
         <option value="Hogar" ${producto.categoria === "Hogar" ? "selected" : ""}>Hogar</option>
@@ -136,11 +135,17 @@ function editarFila(id) {
     </td>
     <td>
       <input type="hidden" id="edit-descripcion-${id}" value="${safeDesc}">
-      <button class="btn btn-desc rounded-pill border-primary text-primary" onclick="editarDescripcionModal(${id})">✏️ Editar Info</button>
+      <button class="btn btn-desc rounded-pill border-primary text-primary" onclick="editarDescripcionModal(${id})">
+        <i class="bi bi-pencil me-1"></i> Editar
+      </button>
     </td>
     <td class="acciones">
-      <button class="btn btn-success btn-sm" onclick="guardarEdicion(${id})">Guardar</button>
-      <button class="btn btn-secondary btn-sm" onclick="renderProductos()">Cancelar</button>
+      <button class="btn btn-success btn-icon rounded-circle" onclick="guardarEdicion(${id})" title="Guardar">
+        <i class="bi bi-check-lg"></i>
+      </button>
+      <button class="btn btn-secondary btn-icon rounded-circle" onclick="renderProductos()" title="Cancelar">
+        <i class="bi bi-x-lg"></i>
+      </button>
     </td>
   `;
 
@@ -161,7 +166,6 @@ function guardarEdicion(id) {
   let stockStr = document.getElementById(`edit-stock-${id}`).value.trim().replace(/,/g, '');
   const stock = parseInt(stockStr);
   const categoria = document.getElementById(`edit-categoria-${id}`).value;
-  // Tomamos el valor del input oculto que actualizó SweetAlert
   const descripcion = document.getElementById(`edit-descripcion-${id}`).value.trim();
 
   const regexPrecio = /^\d{1,7}(\.\d{1,2})?$/;
@@ -174,14 +178,21 @@ function guardarEdicion(id) {
     return;
   }
   if (!nombre || !precio || !categoria || !descripcion) {
-    Swal.fire("Error", "Todos los campos son obligatorios (incluyendo descripción)", "error");
+    Swal.fire("Error", "Todos los campos son obligatorios", "error");
     return;
   }
 
   productos[index] = { ...productos[index], nombre, precio, stock, categoria, descripcion };
   guardarLocalStorage();
   renderProductos();
-  Swal.fire("Actualizado", "El producto ha sido actualizado", "success");
+  
+  Swal.fire({
+    title: "¡Actualizado!",
+    text: "El producto ha sido modificado.",
+    icon: "success",
+    timer: 1500,
+    showConfirmButton: false
+  });
 }
 
 function eliminarProducto(id) {
@@ -193,6 +204,7 @@ function eliminarProducto(id) {
     text: "Esta acción no se puede deshacer",
     icon: "warning",
     showCancelButton: true,
+    confirmButtonColor: '#e53e3e',
     confirmButtonText: "Sí, eliminar",
     cancelButtonText: "Cancelar"
   }).then((result) => {
@@ -200,20 +212,24 @@ function eliminarProducto(id) {
       productos.splice(index, 1);
       guardarLocalStorage();
       renderProductos();
-      Swal.fire("Eliminado", "El producto ha sido eliminado", "success");
+      Swal.fire({
+        title: "Eliminado",
+        text: "El producto ya no está en el inventario.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false
+      });
     }
   });
 }
 
-// Crear producto
+// Crear producto y REDIRIGIR
 document.getElementById("productForm").addEventListener("submit", function(e) {
   e.preventDefault();
   const nombre = document.getElementById("name").value.trim();
-  
   let precio = document.getElementById("price").value.trim().replace(/,/g, '');
   let stockStr = document.getElementById("stock").value.trim().replace(/,/g, '');
   const stock = parseInt(stockStr);
-  
   const categoria = document.getElementById("categoria").value;
   const descripcion = document.getElementById("descripcion").value.trim();
 
@@ -235,11 +251,25 @@ document.getElementById("productForm").addEventListener("submit", function(e) {
   productos.push(nuevoProducto);
   guardarLocalStorage();
   renderProductos();
-  Swal.fire("Agregado", "El producto ha sido agregado exitosamente", "success");
+  
   e.target.reset();
+
+  // Alerta de éxito
+  Swal.fire({
+    title: "¡Agregado!",
+    text: "El producto ha sido guardado exitosamente.",
+    icon: "success",
+    timer: 1500,
+    showConfirmButton: false
+  }).then(() => {
+    // Redirigir a la pestaña de la lista usando Bootstrap Tab API
+    const triggerEl = document.querySelector('#lista-tab');
+    const tab = new bootstrap.Tab(triggerEl);
+    tab.show();
+  });
 });
 
-// Eventos de formateo en tiempo real (Creación)
+// Eventos de formateo en tiempo real
 document.getElementById("price").addEventListener("input", function() {
   this.value = formatPrice(this.value);
 });
